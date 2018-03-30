@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Livraria.Entities.Livro>
+@using GridMvc.Html
+
+@{
+    ViewBag.Title = "Livro";
+}
+
+<style type="text/css">
+    .columnId {
+        display: none;
+    }
+
+    .columnDefinicao {
+        text-align: justify;
+    }
+</style>
+
+<script type="text/javascript">
+    $(function () {
+        pageGrids.grdLivro.onRowSelect(function (e) {
+            window.location = '/Livro/View/' + e.row.Id;
+        });
+    });
+</script>
+
+@Html.Grid(Model).Named("grdLivro").Columns(columns =>
+{
+    columns.Add(x => x.Id).Css("columnId");
+    columns.Add(x => x.Nome).SetWidth("25%");
+
+}).WithPaging(10).Sortable().Filterable().WithMultipleFilters().SetLanguage("br")

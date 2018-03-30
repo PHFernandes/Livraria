@@ -1,0 +1,19 @@
+﻿@model IEnumerable<Livraria.Entities.Livro>
+@using GridMvc.Html
+
+@{
+    ViewBag.Title = "Livro";
+}
+
+<h3 class="titulo">Livros</h3>
+@Html.ActionLink("Novo", "Create", null, new { @class = "link", @style = "float: right;" })
+
+@Html.Grid(Model).Columns(columns =>
+{
+    columns.Add(x => x.Nome);
+    columns.Add().Encoded(false).Sanitized(false).SetWidth(10).RenderValueAs(d =>
+    @<b>@Html.ActionLink("Editar", "Create/" + d.Id)</b>);
+    columns.Add().Encoded(false).Sanitized(false).SetWidth(10).RenderValueAs(d =>
+    @<b>@Html.ActionLink("Excluir", "Delete/" + d.Id, null, new { onclick = "return confirm('Deseja realmente excluir?');" })</b>);
+
+}).WithPaging(10).Sortable().Filterable().WithMultipleFilters().SetLanguage("br")
