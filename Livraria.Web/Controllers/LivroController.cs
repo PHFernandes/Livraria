@@ -14,7 +14,6 @@ namespace Livraria.Web.Controllers
             fac = new LivroFacade();
         }
 
-        [Authorize]
         public ActionResult Index()
         {
             return View(fac.Listar());
@@ -36,7 +35,6 @@ namespace Livraria.Web.Controllers
             return View();
         }
 
-        [Authorize]
         public ActionResult Create(int? id)
         {
             if (id == null)
@@ -52,7 +50,6 @@ namespace Livraria.Web.Controllers
             return View(Livro);
         }
 
-        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Livro Livro)
@@ -67,7 +64,6 @@ namespace Livraria.Web.Controllers
             return View(Livro);
         }
 
-        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)

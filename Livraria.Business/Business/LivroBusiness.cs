@@ -1,6 +1,7 @@
 ﻿using Livraria.Entities;
 using Livraria.Repository;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Livraria.Business
 {
@@ -25,7 +26,7 @@ namespace Livraria.Business
 
         public IList<Livro> Listar()
         {
-            return _rep.Listar();
+            return _rep.Listar().OrderBy(x => x.Nome).ToList();
         }
 
         public void Salvar(Livro e)
